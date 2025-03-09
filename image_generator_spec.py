@@ -16,8 +16,8 @@ def mock_gateway():
     gateway.generate_image.return_value = test_image
     return gateway
 
-def test_generate_image_run(mock_gateway, tmp_path):
-    tool = GenerateImage(vault=str(tmp_path), gateway=mock_gateway)
+def test_generate_image_run(mock_gateway, tmp_path, mocker):
+    tool = GenerateImage(vault=str(tmp_path), llm=mocker.MagicMock(), gateway=mock_gateway)
     relative_path = tool.run("test description", "test")
 
     assert "test.png" in relative_path
