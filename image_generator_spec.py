@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 from unittest.mock import Mock, patch
 from PIL import Image
@@ -16,6 +18,6 @@ def mock_gateway():
 
 def test_generate_image_run(mock_gateway, tmp_path):
     tool = GenerateImage(gateway=mock_gateway)
-    filename = tool.run("test description", "test")
-    assert filename == "test.png"
+    full_path = tool.run("test description", "test")
+    assert Path(full_path).name == "test.png"
     mock_gateway.generate_image.assert_called_once_with("test description")
