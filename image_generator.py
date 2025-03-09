@@ -16,11 +16,27 @@ class GenerateImage(LLMTool):
         self.gateway = gateway or StableDiffusionGateway()
 
     def run(self, image_description: str, base_filename: str) -> str:
-        """Generate an image and save it to a file."""
+        """Generate an image based on the description and save it to a file.
+
+        Parameters
+        ----------
+        image_description : str
+            The text description of the image to generate
+        base_filename : str
+            The base name for the output file (without extension)
+
+        Returns
+        -------
+        str
+            The filename relative to the vault path
+        """
         filename = Path(self.vault) / f"{base_filename}.png"
         image = self.gateway.generate_image(image_description)
         image.save(filename)
-        return str(filename)
+        return f"""
+The image has been generated and saved at `{base_filename}.png`.
+You can embed it in your markdown file using the following syntax: `![image]({base_filename}.png)`
+""".strip()
 
     @property
     def descriptor(self) -> dict:
