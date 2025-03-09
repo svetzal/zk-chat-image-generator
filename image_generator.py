@@ -1,3 +1,5 @@
+from typing import Optional
+
 from mojentic.llm.tools.llm_tool import LLMTool
 
 from stable_diffusion_gateway import StableDiffusionGateway
@@ -6,7 +8,7 @@ from stable_diffusion_gateway import StableDiffusionGateway
 class GenerateImage(LLMTool):
     """Tool to generate images from a description using the StableDiffusion 3.5 Medium model."""
 
-    def __init__(self, gateway: StableDiffusionGateway = None):
+    def __init__(self, gateway: Optional[StableDiffusionGateway] = None):
         """Initialize the tool with an optional gateway."""
         super().__init__()
         self.gateway = gateway or StableDiffusionGateway()
