@@ -1,0 +1,11 @@
+mojentic
+torch
+torchvision
+torchaudio
+diffusers
+transformers
+accelerate
+safetensors
+scipy
+protobuf
+sentencepiece

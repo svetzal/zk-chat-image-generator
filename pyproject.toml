@@ -1,0 +1,37 @@
+[project]
+name = "zk-rag-image-generator"
+version = "1.0.0"
+authors = [
+    { name = "Stacey Vetzal", email = "stacey@vetzal.com" }
+]
+description = "Tool plugin for zk-rag to generate images with stable diffusion 3.5 medium"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    'Programming Language :: Python :: 3',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+]
+dependencies = [
+    "mojentic>=0.2.5",
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "diffusers",
+    "transformers",
+    "accelerate",
+    "safetensors",
+    "scipy",
+    "protobuf",
+    "sentencepiece"
+]
+
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.entry-points]
+zk_rag_plugins = { image_generator = "image_generator:GenerageImage" }
+
+[tool.setuptools]
+py-modules = ["image_generator"]
