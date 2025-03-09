@@ -1,9 +1,8 @@
-from pathlib import Path
+from unittest.mock import Mock
 
 import pytest
-from unittest.mock import Mock, patch
 from PIL import Image
-import torch
+
 from image_generator import GenerateImage
 from stable_diffusion_gateway import StableDiffusionGateway
 
