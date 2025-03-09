@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Optional
 
 from mojentic.llm.tools.llm_tool import LLMTool
@@ -8,17 +9,18 @@ from stable_diffusion_gateway import StableDiffusionGateway
 class GenerateImage(LLMTool):
     """Tool to generate images from a description using the StableDiffusion 3.5 Medium model."""
 
-    def __init__(self, gateway: Optional[StableDiffusionGateway] = None):
+    def __init__(self, vault: str = None, gateway: Optional[StableDiffusionGateway] = None):
         """Initialize the tool with an optional gateway."""
         super().__init__()
+        self.vault = vault or Path.cwd()
         self.gateway = gateway or StableDiffusionGateway()
 
     def run(self, image_description: str, base_filename: str) -> str:
         """Generate an image and save it to a file."""
-        filename = f"{base_filename}.png"
+        filename = self.vault / f"{base_filename}.png"
         image = self.gateway.generate_image(image_description)
         image.save(filename)
-        return filename
+        return str(filename)
 
     @property
     def descriptor(self) -> dict:
