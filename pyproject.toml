@@ -31,7 +31,7 @@ requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project.entry-points]
-zk_rag_plugins = { image_generator = "image_generator:GenerageImage" }
+zk_rag_plugins = { image_generator = "image_generator:GenerateImage" }
 
 [tool.setuptools]
 py-modules = ["image_generator", 'stable_diffusion_gateway']
