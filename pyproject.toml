@@ -34,4 +34,4 @@ build-backend = "setuptools.build_meta"
 zk_rag_plugins = { image_generator = "image_generator:GenerageImage" }
 
 [tool.setuptools]
-py-modules = ["image_generator"]
+py-modules = ["image_generator", 'stable_diffusion_gateway']
