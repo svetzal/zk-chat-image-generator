@@ -17,7 +17,7 @@ def mock_gateway():
     return gateway
 
 def test_generate_image_run(mock_gateway, tmp_path):
-    tool = GenerateImage(gateway=mock_gateway)
+    tool = GenerateImage(vault=str(tmp_path), gateway=mock_gateway)
     full_path = tool.run("test description", "test")
     assert Path(full_path).name == "test.png"
     mock_gateway.generate_image.assert_called_once_with("test description")
