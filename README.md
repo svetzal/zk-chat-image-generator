@@ -55,8 +55,7 @@ For the complete list with specific versions, see `requirements.txt`.
 1. Clone the repository
 2. Install dependencies:
    ```bash
-   pip install -r requirements.txt
-   pip install -r dev-requirements.txt
+   pip install -e .[dev]
    ```
 3. Install pre-commit hooks (recommended):
    ```bash

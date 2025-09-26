@@ -1,4 +1,9 @@
 .venv
-.coverage
-__pycache__
 .idea
+.vscode
+__pycache__
+chroma
+dist
+*.egg-info
+.coverage
+.DS_Store

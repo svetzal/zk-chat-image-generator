@@ -26,6 +26,15 @@ dependencies = [
     "sentencepiece"
 ]
 
+[project.optional-dependencies]
+dev = [
+    "flake8",
+    "pytest",
+    "pytest-spec",
+    "pytest-cov",
+    "pytest-mock",
+]
+
 [build-system]
 requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
