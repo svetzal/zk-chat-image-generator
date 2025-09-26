@@ -1,7 +1,6 @@
 from pathlib import Path
 from typing import Optional
 
-from mojentic.llm import LLMBroker
 from mojentic.llm.tools.llm_tool import LLMTool
 
 from stable_diffusion_gateway import StableDiffusionGateway
@@ -10,10 +9,10 @@ from stable_diffusion_gateway import StableDiffusionGateway
 class GenerateImage(LLMTool):
     """Tool to generate images from a description using the StableDiffusion 3.5 Medium model."""
 
-    def __init__(self, vault: str, llm: LLMBroker, gateway: Optional[StableDiffusionGateway] = None):
-        """Initialize the tool with an optional gateway."""
+    def __init__(self, service_provider, gateway: Optional[StableDiffusionGateway] = None):
+        """Initialize the tool with service provider."""
         super().__init__()
-        self.vault = vault
+        self.service_provider = service_provider
         self.gateway = gateway or StableDiffusionGateway()
 
     def run(self, image_description: str, base_filename: str) -> str:
@@ -31,9 +30,15 @@ class GenerateImage(LLMTool):
         str
             The filename relative to the vault path
         """
-        filename = Path(self.vault) / f"{base_filename}.png"
+        # Use the service provider to get the vault path
+        config = self.service_provider.get_config()
+        if not config or not config.vault:
+            return "Error: Vault path not available"
+
+        filename = Path(config.vault) / f"{base_filename}.png"
         image = self.gateway.generate_image(image_description)
         image.save(filename)
+
         return f"""
 The image has been generated and saved at `{base_filename}.png`.
 You can embed it in your markdown file using the following syntax: `![image]({base_filename}.png)`

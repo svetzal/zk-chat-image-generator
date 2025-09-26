@@ -1,6 +1,6 @@
-# zk-rag-image-generator
+# zk-chat-image-generator
 
-A plugin for zk-rag that enables image generation using Stable Diffusion 3.5 Medium model.
+A plugin for zk-chat that enables image generation using Stable Diffusion 3.5 Medium model.
 
 ## Description
 
@@ -17,14 +17,14 @@ This plugin provides a tool to generate images from textual descriptions using t
 ## Installation
 
 ```bash
-pip install zk-rag-image-generator
+pip install zk-chat-image-generator
 ```
 
 ## Usage
 
-The plugin will be automatically discovered by zk-rag when installed. It provides the `GenerateImage` tool which can be used to create images from textual descriptions.
+The plugin will be automatically discovered by zk-chat when installed. It provides the `GenerateImage` tool which can be used to create images from textual descriptions.
 
-Example usage through zk-rag:
+Example usage through zk-chat:
 
 ```python
 from zk_rag import get_tool
