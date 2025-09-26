@@ -109,7 +109,7 @@ We follow a Behavior-Driven Development (BDD) style using the "Describe/should" 
 
 ### Plugin-Specific Testing Patterns
 - **Gateway Mocking**: Mock `StableDiffusionGateway.generate_image()` to avoid actual model calls
-- **File System**: Mock file operations and verify correct paths are used  
+- **File System**: Mock file operations and verify correct paths are used
 - **Error Scenarios**: Test vault path unavailability and image generation failures
 - **Return Format**: Verify proper markdown-formatted responses with image embedding syntax
 
@@ -125,11 +125,11 @@ def run(self, image_description: str, base_filename: str) -> str:
         config = self.service_provider.get_config()
         if not config or not config.vault:
             return "Error: Vault path not available"
-            
+
         filename = Path(config.vault) / f"{base_filename}.png"
         image = self.gateway.generate_image(image_description)
         image.save(filename)
-        
+
         return f"Image generated and saved at `{base_filename}.png`"
     except Exception as e:
         logger.error("Image generation error", error=str(e), description=image_description)
@@ -143,17 +143,17 @@ Validate inputs and provide clear feedback:
 def run(self, image_description: str, base_filename: str = None) -> str:
     if not image_description:
         return "Error: image_description parameter is required"
-    
+
     if not image_description.strip():
         return "Error: image_description cannot be empty"
-    
+
     if not base_filename:
         # Generate a default filename from description
         base_filename = "generated_image"
-    
+
     if not base_filename.replace('_', '').replace('-', '').isalnum():
         return "Error: base_filename must contain only letters, numbers, hyphens, and underscores"
-    
+
     # Continue with plugin logic...
 ```
 
@@ -193,7 +193,7 @@ Include relevant context in your log messages:
 logger.info(
     "Image generation completed",
     description_length=len(image_description),
-    filename=f"{base_filename}.png", 
+    filename=f"{base_filename}.png",
     vault_path=config.vault
 )
 ```
@@ -210,7 +210,7 @@ def run(self, image_description: str, base_filename: str) -> str:
             return "Error: No vault configured for saving images"
     except RuntimeError as e:
         return f"Configuration service not available: {e}"
-    
+
     # Continue with image generation...
 ```
 
@@ -226,7 +226,7 @@ def __init__(self, service_provider: ServiceProvider):
     super().__init__()
     self.service_provider = service_provider
     self.gateway = gateway or StableDiffusionGateway()
-    
+
     # Access services through convenient methods
     config = service_provider.get_config()
     # Image generator primarily needs config for vault path
