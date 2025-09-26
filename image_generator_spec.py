@@ -29,7 +29,7 @@ def mock_gateway():
 
 class DescribeGenerateImage:
     """Tests for the image generation tool plugin"""
-    
+
     def should_be_instantiated_with_service_provider(self):
         mock_service_provider = Mock()
         mock_gateway = Mock(spec=StableDiffusionGateway)
