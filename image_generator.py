@@ -50,13 +50,16 @@ You can embed it in your markdown file using the following syntax: `![image]({ba
             "type": "function",
             "function": {
                 "name": "generate_image",
-                "description": "Generates a PNG image from a description using the StableDiffusion 3.5 Medium model, and return a relative path to that image that can be used in a markdown file.",
+                "description": ("Generates a PNG image from a description using the StableDiffusion 3.5 Medium model, "
+                               "and return a relative path to that image that can be used in a markdown file."),
                 "parameters": {
                     "type": "object",
                     "properties": {
                         "image_description": {
                             "type": "string",
-                            "description": "A detailed description of the image you wish to generate. Include information about the subject, background, mood or tone, lighting, camera angle, and any other relevant details."
+                            "description": ("A detailed description of the image you wish to generate. "
+                                           "Include information about the subject, background, mood or tone, "
+                                           "lighting, camera angle, and any other relevant details.")
                         },
                         "base_filename": {
                             "type": "string",
